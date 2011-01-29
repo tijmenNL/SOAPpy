@@ -5,7 +5,36 @@
 CVS=0
 
 from distutils.core import setup, Command, Extension
-from SOAPpy.version import __version__
+
+
+def load_version():
+    """
+    Load the version number by executing the version file in a variable. This
+    way avoids executing the __init__.py file which load nearly everything in
+    the project, including fpconst which is not yet installed when this script
+    is executed.
+
+    Source: https://github.com/mitsuhiko/flask/blob/master/flask/config.py#L108
+    """
+
+    import imp
+    from os import path
+
+    filename = path.join(path.dirname(__file__), 'SOAPpy', 'version.py')
+    d = imp.new_module('version')
+    d.__file__ = filename
+    
+    try:
+        execfile(filename, d.__dict__)
+    except IOError, e:
+        e.strerror = 'Unable to load the version number (%s)' % e.strerror
+        raise
+    
+    return d.__version__
+
+
+__version__ = load_version()
+
 
 url="http://pywebsvcs.sf.net/"
 
@@ -26,7 +55,7 @@ setup(
     url = url,
     long_description=long_description,
     packages=['SOAPpy','SOAPpy/wstools'],
-    install_requires=[
+    requires=[
         'fpconst',
         'pyxml'
     ]
