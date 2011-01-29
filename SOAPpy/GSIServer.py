@@ -43,10 +43,12 @@ GSIServer - Contributed by Ivan R. Judson <judson@mcs.anl.gov>
 ################################################################################
 """
 
+from __future__ import nested_scopes
+
 ident = '$Id: GSIServer.py,v 1.5 2005/02/15 16:32:22 warnes Exp $'
+
 from version import __version__
 
-from __future__ import nested_scopes
 
 #import xml.sax
 import re

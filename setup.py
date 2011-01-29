@@ -55,6 +55,7 @@ setup(
     url = url,
     long_description=long_description,
     packages=['SOAPpy','SOAPpy/wstools'],
+    provides = ['SOAPpy'],
     requires=[
         'fpconst',
         'pyxml'
