@@ -56,7 +56,7 @@ setup(
     long_description=long_description,
     packages=['SOAPpy','SOAPpy/wstools'],
     provides = ['SOAPpy'],
-    requires=[
+    install_requires=[
         'fpconst',
         'pyxml'
     ]
