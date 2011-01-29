@@ -17,13 +17,18 @@ if CVS:
     __version__ += "_CVS_"  + time.strftime('%Y_%m_%d')
 
 
-setup(name="SOAPpy",
-      version=__version__,
-      description="SOAP Services for Python",
-      maintainer="Gregory Warnes",
-      maintainer_email="Gregory.R.Warnes@Pfizer.com",
-      url = url,
-      long_description=long_description,
-      packages=['SOAPpy','SOAPpy/wstools']
-     )
+setup(
+    name="SOAPpy",
+    version=__version__,
+    description="SOAP Services for Python",
+    maintainer="Gregory Warnes",
+    maintainer_email="Gregory.R.Warnes@Pfizer.com",
+    url = url,
+    long_description=long_description,
+    packages=['SOAPpy','SOAPpy/wstools'],
+    install_requires=[
+        'fpconst',
+        'pyxml'
+    ]
+)
 
