@@ -110,6 +110,13 @@ INTRODUCTION
 INSTALLATION
 ============
 
+    USING GITHUB
+    ------------
+
+    You can install SOAPpy and its dependencies directly from GitHub using PIP:
+
+        pip install -e "git+http://github.com/pelletier/SOAPpy.git@develop#egg=SOAPpy"
+
     REQUIRED PACKAGES:
     -----------------
 
