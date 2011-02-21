@@ -1,13 +1,17 @@
-Release 0.12.1 of SOAPpy
------------------------- 
+CHANGELOG
+==================
+
+0.12.1 - (unreleased)
+----------------------------------------
 - Forked intially from https://github.com/pelletier/SOAPpy
     - main interresting enhancements grabbed:
 
-        - from __future__ imports must occur at the beginning of the file 
-        - try install requires 
+        - from __future__ imports must occur at the beginning of the file
+        - try install requires
 
-- Grabbed others changeset from
-- Depend directly on wstools not to bundle a duplicated version. 
+- Grabbed others changeset from  https://bitbucket.org/cmclaughlin/soappy-0.12.0/ (fpconst)
+- Grabbed others changeset from  https://bitbucket.org/zeus/soappy (ssl key support)
+- Depend directly on wstools not to bundle a duplicated version.
 - Grabbed from original svn:
 
     - rpm spec file
@@ -15,7 +19,7 @@ Release 0.12.1 of SOAPpy
     - zope/
     - bid/
     - .cvsignore files
-    - 
+    
 - Make it proper packaged, specially toward setuptools.
 
 Release 0.12.0 of SOAPpy
@@ -30,7 +34,7 @@ This release primarily foces on bug fixes.  Primary changes:
     [ 925077] "SOAPpy prints out SOAP fault" (even when Config.debug is off).
     [1001646] "SOAPpy stomps headers when sending multirefs"
     [1001646] "SOAPpy stomps headers when sending multirefs.
-    [1064233] "Bug fixes for complex types" 
+    [1064233] "Bug fixes for complex types"
     [1064248] "Bugs in _asdict() and _asarray() in Types.py"
     [1078051] "Arrays of complex types (doc/lit)"
     [1096971] "Parse error: missing HTTP header 'Content-length'"
@@ -63,19 +67,19 @@ Release 0.11.5 of SOAPpy
 Release 0.11.4 of SOAPpy
 ------------------------
 
-- Bug fixes:
+- Bug fixes
 
     - SOAPpy/Server.py: Check if header information contains SOAPAction
 	  key before checking its value.
 
     - Fixes for generating SOAP from complexType arrays, contributed by
-    antonio.beamud@linkend.com
+      antonio.beamud@linkend.com
 
     - Fixed bug that caused typedArrayTypes to lose their type
-    information when rendered to SOAP and added corresponding
-    test case.
+      information when rendered to SOAP and added corresponding
+      test case.
 
-- New Features 
+- New Features
 
    - Enhancements to fault handling: The faultType Faultstring is now
      a non-variable string (i.e. no nsmethod in it) so that it can be
@@ -88,7 +92,6 @@ Release 0.11.4 of SOAPpy
 
    - SOAPpy/Server.py: Added an unregisterObject function
 
-
    - Changes to allow SOAPBuilder so it can handle a 'raw' Python object.
 
 
@@ -96,7 +99,7 @@ Release 0.11.4 of SOAPpy
 Release 0.11.2 of SOAPpy
 ------------------------
 
-- News: 
+- News:
 
    Ivan R. Judson has joined the SOAPpy team. He is focused on
    Globus support but is also responsible for a lot of other work for
@@ -116,14 +119,14 @@ Release 0.11.2 of SOAPpy
    - Fix bug when content-length is not present in parsed SOAP message.
 
    - Fix bug #888345: Python 2.3 boolean type serialized as int
- 
+
    - Fix bug #875977: no escaping of bad tagnames for NoneTypes
 
 
 - New features:
 
    - Improved Globus support and documentation.  Thanks Ivan!
- 
+
    - Added context handling
 
    - Changed the use of SOAPAction, it used to default to setting it
@@ -147,33 +150,33 @@ Release 0.11.1 of SOAPpy
 - Bug fixes:
 
    - Fixed bug [ 792258 ] "SOAPBuilder.SOAPBuilder.dump can catch
-   wrong exceptions" in SOAPBuilder.dump() submitted by Greg Chapman
-   (glchapman).
+     wrong exceptions" in SOAPBuilder.dump() submitted by Greg Chapman
+     (glchapman).
 
    - Changes suggested by Richard Au (richardau) to fix ssl support.
-   See bug report [ 752882 ] "SSL SOAP Server no longer working."
+     See bug report [ 752882 ] "SSL SOAP Server no longer working."
 
    - Remove call to gentag from 'dump' and add to 'dump_float', per
-   bug report [ 792600 ] "SOAPBuilder.SOAPBuilder.dump possibly should
-   not call gentag" by Greg Chapman (glchapman).
+     bug report [ 792600 ] "SOAPBuilder.SOAPBuilder.dump possibly should
+     not call gentag" by Greg Chapman (glchapman).
 
    - Add a tests for handling of nil="true" and nil="false".  This
-   fixes bug [ pywebsvcs-Bugs-858168 ] 'xsi:nil="true" causes
-   exception' reported by Robert Zimmermann (robertzett):
+     fixes bug [ pywebsvcs-Bugs-858168 ] 'xsi:nil="true" causes
+     exception' reported by Robert Zimmermann (robertzett):
 
 - testClient1.py now works properly.  It had been failing to start the
-server thread on the second unit test.  It turned out that the
-variable 'quit' needed to be reset to zero after the SOAP server
-thread for the first unit test exited.  With the solution of this
-problem testClient1 can now be extended to run unit tests of both
-client and server components.
+  server thread on the second unit test.  It turned out that the
+  variable 'quit' needed to be reset to zero after the SOAP server
+  thread for the first unit test exited.  With the solution of this
+  problem testClient1 can now be extended to run unit tests of both
+  client and server components.
 
 - Added 'strict' option to the WSDL class. If strict is true, a
-RuntimeException will be raised if an unrecogned message is recieved.
-If strict is false, a warning will be printed to the console, the
-message type will be added to the WSDL schema, and processing will
-continue.  This is in response to the second half of bug report [
-817331 ] "Some WSDL.py changes", submitted by Rudolf Ruland.
+  RuntimeException will be raised if an unrecogned message is recieved.
+  If strict is false, a warning will be printed to the console, the
+  message type will be added to the WSDL schema, and processing will
+  continue.  This is in response to the second half of bug report [
+  817331 ] "Some WSDL.py changes", submitted by Rudolf Ruland.
 
 
 Release 0.11.0 of SOAPpy
@@ -182,24 +185,24 @@ Release 0.11.0 of SOAPpy
 - New/Changed configuration settings:
 
   - Config.simplify_objects=1 now converts all SOAPpy objects into basic
-  Python types (list, dictionary, tuple, double, float, etc.).  By default,
-  Config.simplify_objects=0 for backward compatibility.
+    Python types (list, dictionary, tuple, double, float, etc.).  By default,
+    Config.simplify_objects=0 for backward compatibility.
 
   - Config.dict_encoding='ascii' converts the keys of dictionaries
-  (e.g. created when Config.simplify_objects=1) to ascii == plain python
-  strings instead of unicode strings.  This variable can be set to any
-  encoding known to string.encode().
+    (e.g. created when Config.simplify_objects=1) to ascii == plain python
+    strings instead of unicode strings.  This variable can be set to any
+    encoding known to string.encode().
 
   - Config.strict_range=1 forces the SOAP parsing routines to perform
-  range checks on recieved SOAP float and double objects.  When
-  Config.strict_range=0, the default, parsing does not perform range
-  checking (except for detecting overflows, which always occurs).  In
-  either case, range checking is performed when
-  generating SOAP float and double objects.
+    range checks on recieved SOAP float and double objects.  When
+    Config.strict_range=0, the default, parsing does not perform range
+    checking (except for detecting overflows, which always occurs).  In
+    either case, range checking is performed when
+    generating SOAP float and double objects.
 
 - Fixes for WSDLProxy.
 
-- Scripts in the test/ directory 
+- Scripts in the test/ directory
 
   - Verbose debugging messages have been turned off..
 
@@ -213,12 +216,12 @@ Release 0.11.0 of SOAPpy
 - Initial support for Globus via pyGlobus contributed by Ivan
   R. Judson <judson@mcs.anl.gov>.
 
-Release 0.10.4 of SOAPpy 
+Release 0.10.4 of SOAPpy
 ------------------------
 
 Dramatic performance improvements for large data transfers.
 
-Release 0.10.1 of SOAPpy 
+Release 0.10.1 of SOAPpy
 ------------------------
 
 only minor changes
@@ -230,12 +233,12 @@ only minor changes
 3) All test scripts now use the local SOAPpy source instead of the
    globally installed version.
 
-Release 0.10.0 of SOAPpy 
+Release 0.10.0 of SOAPpy
 ------------------------
 
 Enhancements:
 
-1) The new name handling mechanism has been enabled by default.  
+1) The new name handling mechanism has been enabled by default.
 
    The primary purpose of this release is to allow users to test this
    to see if it causes problems.  Please take the time to do so.  If
@@ -246,7 +249,7 @@ Enhancements:
    server under this release will be likely to generate errors due to
    the different name handling mechanisms.
 
-2) MS-Windows systems should now be fully supported.  
+2) MS-Windows systems should now be fully supported.
 
    This required implementing a new module, ieee754, which provides
    functions for detecting and generating IEEE 754 special floating
@@ -284,7 +287,7 @@ VERSION 0.10.3
 --------------
 
 - Removed import of obsoleted ieee753.py.  Now use the fpconst module
-  proposed by PEP 754, available from 
+  proposed by PEP 754, available from
   <http://research.warnes.net/Zope/projects/fpconst/>
 
 - SOAPpy should no longer depend on pyXML.
@@ -315,25 +318,27 @@ VERSION 0.10.0
 CHANGES SINCE VERSION 0.9.9-pre5
 
 - Major Change: The huge file SOAPpy/SOAP.py (4,122 lines, 131K) has
-  been split into 10 separate files: 
+  been split into 10 separate files::
+
 	Client.py	NS.py		SOAPBuilder.py	Utilities.py
-	Config.py	Parser.py	Server.py	
-	Errors.py	SOAP.py		Types.py	
+	Config.py	Parser.py	Server.py
+	Errors.py	SOAP.py		Types.py
+        
   This should ease navigation and maintenance.
 
 - A new CVS module 'wstools' was created to hold code which is used by
   both ZSI and SOAPpy.  While this module is stored separately in CVS,
   it will be distributed as an integral part of both ZSI and SOAPpy,
   and will be included as an 'internal' module by both.  In the SOAPpy
-  source, it lives in the directory SOAPpy/wstools.   
+  source, it lives in the directory SOAPpy/wstools.
 
 - The files XMLname.py, ieee754.py, have been moved into SOAPpy/wstools.
 
 - Added TODO file
 
 - Fix bug in getNS that caused loss of namespace by using better
-  pattern matching to find the namespace in the SOAP message.  Fixes bug 
-  678239 
+  pattern matching to find the namespace in the SOAP message.  Fixes bug
+  678239
 
 - Added Mark Bucciarelli's <mark@hubcapconsulting.com> patch to
   provide wsdl code on properly structured .GET requests to the server.
@@ -383,13 +388,13 @@ CHANGES SINCE VERSION 0.9.8
 ---------------------------
 
 - IEEE 754 floating point specials (Inf, -Inf, NaN) should now be
-  properly and consistently handled on all platforms. 
+  properly and consistently handled on all platforms.
 
   Added code to explicitly check for and handle IEEE 754 floating
-  point specials (Inf, -Inf, NaN). This replaces an ugly hack for 
+  point specials (Inf, -Inf, NaN). This replaces an ugly hack for
   systems whose python float() doesn't understand the strings "Inf",
   "NaN", etc.  Floating point specials should now be properly handled
-  on all operating systems.  
+  on all operating systems.
 
   ***SOAPpy should now work properly on all versions of Microsoft Windows.***
 
@@ -410,8 +415,8 @@ CHANGES SINCE VERSION 0.9.7
 ---------------------------
 
 - Modified structure to allow installation using Python distutils
-  (i.e. setup.py).  Access to the SOAPpy library now requires: 
-     from SOAPpy import SOAP
+  (i.e. setup.py).  Access to the SOAPpy library now requires:
+  from SOAPpy import SOAP
 
 - I (Gregory R. Warnes) have implemented an experimental and
   non-standard method of handling named and unnamed arguments.  This
@@ -424,7 +429,7 @@ CHANGES SINCE VERSION 0.9.7
   are assumed to be named and are passed using the xml tag id as the
   parameter name.  Outgoing SOAP method calls now always generate
   names in this way--whether or not specialArgs is enabled--instead of
-  using the pattern v#####.  
+  using the pattern v#####.
 
   See the file README.MethodParameterNaming for more details.
 
@@ -476,7 +481,7 @@ VERSION 0.9.7 (6/27/01)
 - Fixed the unamed ordered parameters bug
 - Added the ability to specify a http_proxy
 - Added a patch provided by Tim MiddelKoop to allow printing of proxy objects
-- Added the contrib directory and included a medusa implementation of a 
+- Added the contrib directory and included a medusa implementation of a
   SOAP.py server by Ng Pheng Siong
 
 
@@ -531,7 +536,7 @@ VERSION 0.9.5 (5/16/01)
 - Now assumes that any type that isn't in a schema could be a struct.
 - Added the Config object, now config options can be set globally or on an
   individual call level.
-- Deprecated the DateTime, Binary and Boolean types, should now 
+- Deprecated the DateTime, Binary and Boolean types, should now
   use dateTimeType, binaryType and booleanType.
 - Includes N+I interop suite.
 - Various bug fixes and improvements.
@@ -572,7 +577,7 @@ VERSION 0.8 (4/23/01)
 - Fixed the zero-length array problem
 - Made indentation uniform (spaces not tabs)
 - Made Header and Body work more like real structs
-- Changed the parseSOAP api, now returns the body structure, 
+- Changed the parseSOAP api, now returns the body structure,
   instead of a list of body elements
 - Changed the soapaction and namespaces for the interop server
 - New silabclient options

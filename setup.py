@@ -5,6 +5,13 @@
 CVS=0
 
 from setuptools import setup, find_packages
+import os
+
+def read(*rnames):
+    return "\n"+ open(
+        os.path.join('.', *rnames)
+    ).read()
+
 
 
 def load_version():
@@ -23,13 +30,13 @@ def load_version():
     filename = path.join(path.dirname(__file__), 'src', 'SOAPpy', 'version.py')
     d = imp.new_module('version')
     d.__file__ = filename
-    
+
     try:
         execfile(filename, d.__dict__)
     except IOError, e:
         e.strerror = 'Unable to load the version number (%s)' % e.strerror
         raise
-    
+
     return d.__version__
 
 
@@ -38,8 +45,9 @@ __version__ = load_version()
 
 url="http://pywebsvcs.sf.net/"
 
-long_description="SOAPpy provides tools for building SOAP clients and servers.  For more information see " + url
-
+long_description="SOAPpy provides tools for building SOAP clients and servers.  For more information see " + url\
+    +'\n'+read('README.txt')\
+    +'\n'+read('CHANGES.txt')\
 
 if CVS:
     import time
@@ -56,7 +64,7 @@ setup(
     long_description=long_description,
     packages=find_packages('src'),
     package_dir = {'': 'src'},
-    include_package_data=True, 
+    include_package_data=True,
     install_requires=[
         'fpconst',
         'wstools',
