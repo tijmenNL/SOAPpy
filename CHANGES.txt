@@ -1,8 +1,8 @@
 CHANGELOG
 ==================
 
-0.12.1 - (unreleased)
-----------------------------------------
+0.12.1 (2011-02-21)
+-------------------
 - Forked intially from https://github.com/pelletier/SOAPpy
     - main interresting enhancements grabbed:
 
