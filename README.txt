@@ -2,26 +2,38 @@
 SOAPpy - Simple to use SOAP library for Python
 ==============================================
 
-Current Maintainers:
+Credits
+========
+Companies
+---------
+|makinacom|_
 
-    - Gregory R. Warnes <Gregory.R.Warnes@Pfizer.com>
-    - Mathieu Le Marec - Pasquet <kiorky@cryptelium.net>
+  * `Planet Makina Corpus <http://www.makina-corpus.org>`_
+  * `Contact us <mailto:python@makina-corpus.org>`_
 
-Original Authors:
+.. |makinacom| image:: http://depot.makina-corpus.org/public/logo.gif
+.. _makinacom:  http://www.makina-corpus.com
 
-    - Cayce Ullman <c_ullman@yahoo.com>
-    - Brian Matthews <blm@blmatthews.com>
+Authors
+------------
 
-Contributions by:
+- Cayce Ullman <c_ullman@yahoo.com>
+- Brian Matthews <blm@blmatthews.com>
+- Gregory R. Warnes <Gregory.R.Warnes@Pfizer.com>
+- Makina Corpus <python@makina-corpus.com>
+- Mathieu Le Marec - Pasquet <kiorky@cryptelium.net>
 
-    - Christopher Blunck <blunck2@gst.com>
-    - Brad Knotwell <b.knotwell@f5.com>
-    - Mark Bucciarelli <mark@hubcapconsulting.com> (ported WSDL client from ZSI)
-    - Ivan R. Judson     <judson@mcs.anl.gov> (Globus support)
-    - Kirk Strauser <kirk@daycos.com>
-    - Antonio Beamud Montero <antonio.beamud@linkend.com> (patches for integrating SOAPpy into Zope)
-    - And others.
+Contributors
+----------------
+- Christopher Blunck <blunck2@gst.com>
+- Brad Knotwell <b.knotwell@f5.com>
+- Mark Bucciarelli <mark@hubcapconsulting.com> (ported WSDL client from ZSI)
+- Ivan R. Judson     <judson@mcs.anl.gov> (Globus support)
+- Kirk Strauser <kirk@daycos.com>
+- Antonio Beamud Montero <antonio.beamud@linkend.com> (patches for integrating SOAPpy into Zope)
+- And others.
 
+Copyright (c) 20011 Makina Corpus
 Copyright (c) 2002-2005, Pfizer, Inc.
 Copyright (c) 2001, Cayce Ullman.
 Copyright (c) 2001, Brian Matthews.
