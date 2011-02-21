@@ -20,7 +20,7 @@ def load_version():
     import imp
     from os import path
 
-    filename = path.join(path.dirname(__file__), 'SOAPpy', 'version.py')
+    filename = path.join(path.dirname(__file__), 'src', 'SOAPpy', 'version.py')
     d = imp.new_module('version')
     d.__file__ = filename
     
@@ -50,8 +50,8 @@ setup(
     name="SOAPpy",
     version=__version__,
     description="SOAP Services for Python",
-    maintainer="Gregory Warnes",
-    maintainer_email="Gregory.R.Warnes@Pfizer.com",
+    maintainer="Gregory Warnes, kiorky",
+    maintainer_email="Gregory.R.Warnes@Pfizer.com, kiorky@cryptelium.net",
     url = url,
     long_description=long_description,
     packages=find_packages('src'),
@@ -59,8 +59,7 @@ setup(
     include_package_data=True, 
     install_requires=[
         'fpconst',
-        'pyxml'
-        'wstools'
+        'wstools',
     ]
 )
 
