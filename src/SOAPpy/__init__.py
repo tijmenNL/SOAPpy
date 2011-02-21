@@ -1,3 +1,5 @@
+
+ident = '$Id: __init__.py 541 2004-01-31 04:20:06Z warnes $'
 from version import __version__
 
 from Client      import *

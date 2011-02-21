@@ -1,7 +1,7 @@
 # This list of servers was taken from the SOAPBuilders Interoperability Lab
 # (http://www.xmethods.net/ilab/ilab.html) 4/23/01.
 #
-# $Id: silab.servers,v 1.1.1.1 2001/06/27 21:36:14 cullman Exp $
+# $Id: silab.servers 4 2001-06-27 21:36:11Z cullman $
 
 Name: SOAP.py 0.9.6 (1999)
 Endpoint: http://208.177.157.221:9595/xmethodsInterop

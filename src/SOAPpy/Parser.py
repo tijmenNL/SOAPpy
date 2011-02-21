@@ -12,7 +12,7 @@ from wstools.XMLname import fromXMLname
 try: from M2Crypto import SSL
 except: pass
 
-ident = '$Id: Parser.py,v 1.16 2005/02/22 04:29:42 warnes Exp $'
+ident = '$Id: Parser.py 1497 2010-03-08 06:06:52Z pooryorick $'
 from version import __version__
 
 
@@ -85,6 +85,16 @@ class SOAPParser(xml.sax.handler.ContentHandler):
         self._rules    = rules
 
     def startElementNS(self, name, qname, attrs):
+
+        def toStr( name ):
+            prefix = name[0]
+            tag    = name[1]
+            if self._prem_r.has_key(prefix):
+               tag = self._prem_r[name[0]] + ':' + name[1]
+            elif prefix:
+               tag = prefix + ":" + tag
+            return tag
+        
         # Workaround two sax bugs
         if name[0] == None and name[1][0] == ' ':
             name = (None, name[1][1:])
@@ -95,8 +105,8 @@ class SOAPParser(xml.sax.handler.ContentHandler):
 
         if self._next == "E":
             if name[1] != 'Envelope':
-                raise Error, "expected `SOAP-ENV:Envelope', gto `%s:%s'" % \
-                    (self._prem_r[name[0]], name[1])
+                raise Error, "expected `SOAP-ENV:Envelope', " \
+                    "got `%s'" % toStr( name )
             if name[0] != NS.ENV:
                 raise faultType, ("%s:VersionMismatch" % NS.ENV_T,
                     "Don't understand version `%s' Envelope" % name[0])
@@ -108,16 +118,17 @@ class SOAPParser(xml.sax.handler.ContentHandler):
             else:
                 raise Error, \
                     "expected `SOAP-ENV:Header' or `SOAP-ENV:Body', " \
-                    "got `%s'" % self._prem_r[name[0]] + ':' + name[1]
+                    "got `%s'" % toStr( name )
         elif self._next == "B":
             if name == (NS.ENV, "Body"):
                 self._next = None
             else:
-                raise Error, "expected `SOAP-ENV:Body', got `%s'" % \
-                    self._prem_r[name[0]] + ':' + name[1]
+                raise Error, "expected `SOAP-ENV:Body', " \
+                      "got `%s'" % toStr( name )
         elif self._next == "":
-            raise Error, "expected nothing, got `%s'" % \
-                self._prem_r[name[0]] + ':' + name[1]
+            raise Error, "expected nothing, " \
+                  "got `%s'" % toStr( name )
+                  
 
         if len(self._stack) == 2:
             rules = self._rules
@@ -137,7 +148,10 @@ class SOAPParser(xml.sax.handler.ContentHandler):
 
                 i = kind.find(':')
                 if i >= 0:
-                    kind = (self._prem[kind[:i]], kind[i + 1:])
+                    try:
+                        kind = (self._prem[kind[:i]], kind[i + 1:])
+                    except:
+                        kind = None
                 else:
                     kind = None
 
@@ -232,7 +246,10 @@ class SOAPParser(xml.sax.handler.ContentHandler):
                 if kind != None:
                     i = kind.find(':')
                     if i >= 0:
-                        kind = (self._prem[kind[:i]], kind[i + 1:])
+                        try:
+                            kind = (self._prem[kind[:i]], kind[i + 1:])
+                        except:
+                            kind = (None, kind)
                     else:
 # XXX What to do here? (None, kind) is just going to fail in convertType
                         #print "Kind with no NS:", kind
@@ -353,6 +370,12 @@ class SOAPParser(xml.sax.handler.ContentHandler):
             if len(cur) == 0 and ns != NS.URN:
                 # Nothing's been added to the current frame so it must be a
                 # simple type.
+
+#                 print "cur:", cur
+#                 print "ns:", ns
+#                 print "attrs:", attrs
+#                 print "kind:", kind
+                
 
                 if kind == None:
                     # If the current item's container is an array, it will
@@ -775,7 +798,7 @@ class SOAPParser(xml.sax.handler.ContentHandler):
         'negative-integer':     (0, None, -1),
         'long':                 (1, -9223372036854775808L,
                                     9223372036854775807L),
-        'int':                  (0, -2147483648L, 2147483647),
+        'int':                  (0, -2147483648L, 2147483647L),
         'short':                (0, -32768, 32767),
         'byte':                 (0, -128, 127),
         'nonNegativeInteger':   (0, 0, None),
@@ -795,9 +818,6 @@ class SOAPParser(xml.sax.handler.ContentHandler):
                          1.7976931348623157E+308),
     }
     zerofloatre = '[1-9]'
-
-
-
 
 
     def convertType(self, d, t, attrs, config=Config):
@@ -837,8 +857,18 @@ class SOAPParser(xml.sax.handler.ContentHandler):
             #print "   requested_type=", t
             #print "   data=", d
 
+
+#         print "convertToBasicTypes:"
+#         print "   requested_type=", t
+#         print "   data=", d
+#         print "   attrs=", attrs
+#         print "   t[0]=", t[0]
+#         print "   t[1]=", t[1]
+            
+#         print "   in?", t[0] in NS.EXSD_L
+
         if t[0] in NS.EXSD_L:
-            if t[1] == "integer":
+            if t[1]=="integer": # unbounded integer type
                 try:
                     d = int(d)
                     if len(attrs):
@@ -846,7 +876,7 @@ class SOAPParser(xml.sax.handler.ContentHandler):
                 except:
                     d = long(d)
                 return d
-            if self.intlimits.has_key (t[1]): # integer types
+            if self.intlimits.has_key (t[1]): # range-bounded integer types
                 l = self.intlimits[t[1]]
                 try: d = int(d)
                 except: d = long(d)
@@ -866,54 +896,49 @@ class SOAPParser(xml.sax.handler.ContentHandler):
                     return str(dnn)
                 except:
                     return dnn
-            if t[1] == "boolean":
+            if t[1] in ("bool", "boolean"):
                 d = d.strip().lower()
                 if d in ('0', 'false'):
-                    return 0
+                    return False
                 if d in ('1', 'true'):
-                    return 1
+                    return True
                 raise AttributeError, "invalid boolean value"
             if t[1] in ('double','float'):
                 l = self.floatlimits[t[1]]
                 s = d.strip().lower()
 
-                d = float(s)
+                # Explicitly check for NaN and Infinities
+                if s == "nan":
+                    d = fpconst.NaN
+                elif s[0:2]=="inf" or s[0:3]=="+inf":
+                    d = fpconst.PosInf
+                elif s[0:3] == "-inf":
+                    d = fpconst.NegInf
+                else :
+                    d = float(s)
 
                 if config.strict_range:
-                    if d < l[1]: raise UnderflowError
-                    if d > l[2]: raise OverflowError
-                else:
-                    # some older SOAP impementations (notably SOAP4J,
-                    # Apache SOAP) return "infinity" instead of "INF"
-                    # so check the first 3 characters for a match.
-                    if s == "nan":
-                        return fpconst.NaN
-                    elif s[0:3] in ("inf", "+inf"):
-                        return fpconst.PosInf
-                    elif s[0:3] == "-inf":
-                        return fpconst.NegInf
-
-                if fpconst.isNaN(d):
-                    if s != 'nan':
-                        raise ValueError, "invalid %s: %s" % (t[1], s)
-                elif fpconst.isNegInf(d):
-                    if s != '-inf':
-                        raise UnderflowError, "%s too small: %s" % (t[1], s)
-                elif fpconst.isPosInf(d):
-                    if s != 'inf':
-                        raise OverflowError, "%s too large: %s" % (t[1], s)
-                elif d < 0 and d < l[1]:
-                        raise UnderflowError, "%s too small: %s" % (t[1], s)
-                elif d > 0 and ( d < l[0] or d > l[2] ):
-                        raise OverflowError, "%s too large: %s" % (t[1], s)
-                elif d == 0:
-                    if type(self.zerofloatre) == StringType:
-                        self.zerofloatre = re.compile(self.zerofloatre)
-
-                    if self.zerofloatre.search(s):
-                        raise UnderflowError, "invalid %s: %s" % (t[1], s)
-
+                    if fpconst.isNaN(d):
+                        if s[0:2] != 'nan':
+                            raise ValueError, "invalid %s: %s" % (t[1], s)
+                    elif fpconst.isNegInf(d):
+                        if s[0:3] != '-inf':
+                            raise UnderflowError, "%s too small: %s" % (t[1], s)
+                    elif fpconst.isPosInf(d):
+                        if s[0:2] != 'inf' and s[0:3] != '+inf':
+                            raise OverflowError, "%s too large: %s" % (t[1], s)
+                    elif d < 0 and d < l[1]:
+                            raise UnderflowError, "%s too small: %s" % (t[1], s)
+                    elif d > 0 and ( d < l[0] or d > l[2] ):
+                            raise OverflowError, "%s too large: %s" % (t[1], s)
+                    elif d == 0:
+                        if type(self.zerofloatre) == StringType:
+                            self.zerofloatre = re.compile(self.zerofloatre)
+    
+                        if self.zerofloatre.search(s):
+                            raise UnderflowError, "invalid %s: %s" % (t[1], s)
                 return d
+            
             if t[1] in ("dateTime", "date", "timeInstant", "time"):
                 return self.convertDateTime(d, t[1])
             if t[1] == "decimal":

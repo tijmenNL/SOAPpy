@@ -1,3 +1,22 @@
+Release 0.12.1 of SOAPpy
+------------------------ 
+- Forked intially from https://github.com/pelletier/SOAPpy
+    - main interresting enhancements grabbed:
+
+        - from __future__ imports must occur at the beginning of the file 
+        - try install requires 
+
+- Grabbed others changeset from
+- Depend directly on wstools not to bundle a duplicated version. 
+- Grabbed from original svn:
+
+    - rpm spec file
+    - tools/
+    - zope/
+    - bid/
+    - .cvsignore files
+    - 
+- Make it proper packaged, specially toward setuptools.
 
 Release 0.12.0 of SOAPpy
 ------------------------

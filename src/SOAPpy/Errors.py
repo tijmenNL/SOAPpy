@@ -40,7 +40,7 @@
 ################################################################################
 """
 
-ident = '$Id: Errors.py,v 1.5 2005/02/15 16:32:22 warnes Exp $'
+ident = '$Id: Errors.py 921 2005-02-15 16:32:23Z warnes $'
 from version import __version__
 
 import exceptions

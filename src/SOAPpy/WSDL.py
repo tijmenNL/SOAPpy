@@ -2,10 +2,12 @@
 
 Rudimentary support."""
 
-ident = '$Id: WSDL.py,v 1.11 2005/02/21 20:16:15 warnes Exp $'
+ident = '$Id: WSDL.py 1467 2008-05-16 23:32:51Z warnes $'
 from version import __version__
 
 import wstools
+import xml
+from Errors import Error
 from Client import SOAPProxy, SOAPAddress
 from Config import Config
 import urllib
@@ -39,8 +41,15 @@ class Proxy:
 
         # From Mark Pilgrim's "Dive Into Python" toolkit.py--open anything.
         if self.wsdl is None and hasattr(wsdlsource, "read"):
-            #print 'stream'
-            self.wsdl = reader.loadFromStream(wsdlsource)
+            print 'stream:', wsdlsource
+            try:
+                self.wsdl = reader.loadFromStream(wsdlsource)
+            except xml.parsers.expat.ExpatError, e:
+                newstream = urllib.urlopen(wsdlsource)
+                buf = newstream.readlines()
+                raise Error, "Unable to parse WSDL file at %s: \n\t%s" % \
+                      (wsdlsource, "\t".join(buf))
+                
 
         # NOT TESTED (as of April 17, 2003)
         #if self.wsdl is None and wsdlsource == '-':
@@ -53,15 +62,24 @@ class Proxy:
                 file(wsdlsource)
                 self.wsdl = reader.loadFromFile(wsdlsource)
                 #print 'file'
-            except (IOError, OSError): 
-                pass
-
+            except (IOError, OSError): pass
+            except xml.parsers.expat.ExpatError, e:
+                newstream = urllib.urlopen(wsdlsource)
+                buf = newstream.readlines()
+                raise Error, "Unable to parse WSDL file at %s: \n\t%s" % \
+                      (wsdlsource, "\t".join(buf))
+            
         if self.wsdl is None:
             try:
                 stream = urllib.urlopen(wsdlsource)
                 self.wsdl = reader.loadFromStream(stream, wsdlsource)
             except (IOError, OSError): pass
-
+            except xml.parsers.expat.ExpatError, e:
+                newstream = urllib.urlopen(wsdlsource)
+                buf = newstream.readlines()
+                raise Error, "Unable to parse WSDL file at %s: \n\t%s" % \
+                      (wsdlsource, "\t".join(buf))
+            
         if self.wsdl is None:
             import StringIO
             self.wsdl = reader.loadFromString(str(wsdlsource))

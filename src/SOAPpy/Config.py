@@ -33,10 +33,10 @@
 ################################################################################
 """
 
-ident = '$Id: Config.py,v 1.9 2004/01/31 04:20:05 warnes Exp $'
+ident = '$Id: Config.py 1298 2006-11-07 00:54:15Z sanxiyn $'
 from version import __version__
 
-import copy, socket
+import socket
 from types import *
 
 from NS import NS 

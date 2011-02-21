@@ -33,11 +33,9 @@
 ################################################################################
 """
 
-ident = '$Id: Utilities.py,v 1.4 2004/01/31 04:20:06 warnes Exp $'
+ident = '$Id: Utilities.py 1298 2006-11-07 00:54:15Z sanxiyn $'
 from version import __version__
 
-import exceptions
-import copy
 import re
 import string
 import sys

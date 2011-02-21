@@ -10,7 +10,7 @@ sys.path.insert (1, '..')
 
 from SOAPpy import SOAP
 
-ident = '$Id: soapware.py,v 1.2 2003/03/08 05:10:01 warnes Exp $'
+ident = '$Id: soapware.py 98 2003-03-08 05:10:01Z warnes $'
 
 def whichToolkit ():
     return SOAP.SOAPUserAgent ()

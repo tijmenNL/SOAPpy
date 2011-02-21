@@ -3,7 +3,7 @@
 import string
 import cgi
 
-ident = '$Id: interop2html.py,v 1.1.1.1 2001/06/27 21:36:14 cullman Exp $'
+ident = '$Id: interop2html.py 4 2001-06-27 21:36:11Z cullman $'
 
 lines = open('output.txt').readlines()
 #preserve the tally

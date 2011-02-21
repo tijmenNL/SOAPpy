@@ -1,3 +1,5 @@
+from __future__ import nested_scopes
+
 """
 GSIServer - Contributed by Ivan R. Judson <judson@mcs.anl.gov>
 
@@ -43,12 +45,8 @@ GSIServer - Contributed by Ivan R. Judson <judson@mcs.anl.gov>
 ################################################################################
 """
 
-from __future__ import nested_scopes
-
-ident = '$Id: GSIServer.py,v 1.5 2005/02/15 16:32:22 warnes Exp $'
-
+ident = '$Id: GSIServer.py 1468 2008-05-24 01:55:33Z warnes $'
 from version import __version__
-
 
 #import xml.sax
 import re

@@ -15,7 +15,7 @@ from SOAPpy import SOAP
 if SOAP.Config.SSLserver:
     from M2Crypto import SSL
 
-ident = '$Id: silabserver.py,v 1.2 2003/03/08 05:10:01 warnes Exp $'
+ident = '$Id: silabserver.py 98 2003-03-08 05:10:01Z warnes $'
 
 def echoFloat (inputFloat):
     return inputFloat

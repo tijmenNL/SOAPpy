@@ -21,7 +21,7 @@ from SOAPpy import SOAP
 SOAP.Config.typesNamespace = SOAP.NS.XSD3
 SOAP.Config.typesNamespace = SOAP.NS.XSD3
 
-ident = '$Id: silabclient.py,v 1.2 2003/03/08 05:10:01 warnes Exp $'
+ident = '$Id: silabclient.py 98 2003-03-08 05:10:01Z warnes $'
 
 DEFAULT_SERVERS_FILE        = 'silab.servers'
 

@@ -4,7 +4,7 @@
 
 CVS=0
 
-from distutils.core import setup, Command, Extension
+from setuptools import setup, find_packages
 
 
 def load_version():
@@ -54,11 +54,13 @@ setup(
     maintainer_email="Gregory.R.Warnes@Pfizer.com",
     url = url,
     long_description=long_description,
-    packages=['SOAPpy','SOAPpy/wstools'],
-    provides = ['SOAPpy'],
+    packages=find_packages('src'),
+    package_dir = {'': 'src'},
+    include_package_data=True, 
     install_requires=[
         'fpconst',
         'pyxml'
+        'wstools'
     ]
 )
 

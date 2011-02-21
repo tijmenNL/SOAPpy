@@ -1,3 +1,5 @@
+from __future__ import nested_scopes
+
 """
 ################################################################################
 #
@@ -40,13 +42,10 @@
 ################################################################################
 """
 
-from __future__ import nested_scopes
-
-ident = '$Id: Server.py,v 1.21 2005/02/15 16:32:22 warnes Exp $'
+ident = '$Id: Server.py 1468 2008-05-24 01:55:33Z warnes $'
 from version import __version__
 
 #import xml.sax
-import re
 import socket
 import sys
 import SocketServer
@@ -65,7 +64,7 @@ from Utilities   import debugHeader, debugFooter
 try: from M2Crypto import SSL
 except: pass
 
-ident = '$Id: Server.py,v 1.21 2005/02/15 16:32:22 warnes Exp $'
+ident = '$Id: Server.py 1468 2008-05-24 01:55:33Z warnes $'
 
 from version import __version__
 
@@ -249,10 +248,11 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             # It is enabled by default.  To disable, set
             # Config.specialArgs to False.
 
-            if Config.specialArgs: 
 
-                ordered_args = {}
-                named_args   = {}
+            ordered_args = {}
+            named_args   = {}
+
+            if Config.specialArgs: 
                 
                 for (k,v) in  kw.items():
 
@@ -514,7 +514,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
             t = 'text/xml';
             if self.server.encoding != None:
-                t += '; charset="%s"' % self.server.encoding
+                t += '; charset=%s' % self.server.encoding
             self.send_header("Content-type", t)
             self.send_header("Content-length", str(len(resp)))
             self.end_headers()
@@ -558,7 +558,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                 self.connection.shutdown(1)
 
         def do_GET(self):
-
+            
             #print 'command        ', self.command
             #print 'path           ', self.path
             #print 'request_version', self.request_version
@@ -567,7 +567,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             #print '   maintype', self.headers.maintype
             #print '   subtype ', self.headers.subtype
             #print '   params  ', self.headers.plist
-
+            
             path = self.path.lower()
             if path.endswith('wsdl'):
                 method = 'wsdl'
@@ -581,7 +581,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                         l = method.split(".")
                         for i in l:
                             function = getattr(function, i)
-
+            
                 if function:
                     self.send_response(200)
                     self.send_header("Content-type", 'text/plain')
@@ -589,7 +589,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                     response = apply(function, ())
                     self.wfile.write(str(response))
                     return
-
+            
             # return error
             self.send_response(200)
             self.send_header("Content-type", 'text/html')
@@ -613,7 +613,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
 
 </body>''')
-            
+
             
     def log_message(self, format, *args):
         if self.server.log:
