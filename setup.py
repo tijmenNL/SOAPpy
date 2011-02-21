@@ -43,7 +43,7 @@ def load_version():
 __version__ = load_version()
 
 
-url="http://pywebsvcs.sf.net/"
+url="https://github.com/kiorky/SOAPpy.git"
 
 long_description="SOAPpy provides tools for building SOAP clients and servers.  For more information see " + url\
     +'\n'+read('README.txt')\
