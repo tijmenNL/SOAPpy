@@ -1,29 +1,14 @@
 CHANGELOG
 ==================
 
-(unreleased)
------------------
-
-- Fix for multi-dimensional arrays. [Ionut Turturica]
-
-
 0.12.6 (unreleased)
--------------------
-
-- Nothing changed yet.
-
+--------------------
+- Nothing changed yet
 
 0.12.5 (2011-08-01)
 -------------------
-
+- Fix for multi-dimensional arrays. [Ionut Turturica]
 - Credits
-
-
-0.12.3 (2011-02-21)
--------------------
-
-- Nothing changed yet.
-
 
 0.12.3 (2011-02-21)
 -------------------
