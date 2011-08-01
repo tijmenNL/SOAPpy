@@ -7,6 +7,12 @@ CHANGELOG
 - Fix for multi-dimensional arrays. [Ionut Turturica]
 
 
+0.12.6 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 0.12.5 (2011-08-01)
 -------------------
 
