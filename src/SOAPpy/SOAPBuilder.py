@@ -38,7 +38,6 @@ from version import __version__
 
 import cgi
 from wstools.XMLname import toXMLname, fromXMLname
-import fpconst
 
 # SOAPpy modules
 from Config import Config
@@ -330,11 +329,11 @@ class SOAPBuilder:
         if Config.strict_range:
             doubleType(obj)
 
-        if fpconst.isPosInf(obj):
+        if PosInf == obj:
             obj = "INF"
-        elif fpconst.isNegInf(obj):
+        elif NegInf == obj:
             obj = "-INF"
-        elif fpconst.isNaN(obj):
+        elif NaN == obj:
             obj = "NaN"
         else:
             obj = repr(obj)
