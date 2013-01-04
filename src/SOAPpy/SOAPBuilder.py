@@ -227,6 +227,9 @@ class SOAPBuilder:
         ns_map[nsURI] = ns
         if self.config.buildWithNamespacePrefix:
             return (ns + ':', ' xmlns:%s="%s"' % (ns, nsURI))
+        elif self.config.buildWithGlobalNamespacePrefix:
+            self.envns[nsURI] = ns
+            return (ns + ':', '')
         else:
             return ('', ' xmlns="%s"' % (nsURI))
 
@@ -509,6 +512,49 @@ class SOAPBuilder:
 
     dump_tuple = dump_list
 
+    def dump_map(self, obj, tag, typed = 1, ns_map = {}):
+        if Config.debug: print "In dump_map.",  "obj=", obj
+        tag = tag or self.gentag()
+        tag = toXMLname(tag) # convert from SOAP 1.2 XML name encoding
+
+        if type(obj) == InstanceType:
+            data = obj.data
+        else:
+            data = obj
+
+        if typed:
+            id = self.checkref(obj, tag, ns_map)
+            if id == None:
+                return
+
+        try: a = obj._marshalAttrs(ns_map, self)
+        except: a = ''
+
+        ndecl = ''
+        ens, edecl = self.genns(ns_map, 'http://xml.apache.org/xml-soap')
+        ins, idecl = self.genns(ns_map, self.config.schemaNamespaceURI)
+
+        if typed:
+            self.out.append(
+                '<%s %stype="%sMap"%s%s%s%s%s%s>\n' %
+                (tag, ins, ens, ndecl, edecl, idecl,
+                 self.genroot(ns_map), id, a))
+
+            try: elemsname = obj._elemsname
+            except: elemsname = "item"
+        else:
+            elemsname = tag
+            
+        if isinstance(data, (list, tuple, arrayType)):
+            should_drill = True
+        else:
+            should_drill = not same_type
+        
+        for i in data:
+            self.dump(i, elemsname, should_drill, ns_map)
+
+        if typed: self.out.append('</%s>\n' % tag)
+
     def dump_exception(self, obj, tag, typed = 0, ns_map = {}):
         if isinstance(obj, faultType):    # Fault
             cns, cdecl = self.genns(ns_map, NS.ENC)
@@ -554,6 +600,7 @@ class SOAPBuilder:
         # watch out for order! 
         dumpmap = (
             (Exception, self.dump_exception),
+            (mapType, self.dump_map),
             (arrayType, self.dump_list),
             (basestring, self.dump_string),
             (NoneType, self.dump_None),

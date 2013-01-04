@@ -1562,6 +1562,16 @@ class arrayType(UserList.UserList, compoundType):
 
         a[curpos[0]] = value
 
+class mapType(arrayType):
+    _validURIs = ('http://xml.apache.org/xml-soap',)
+
+    def __init__(self, data = None, name = None, attrs = None,
+        offset = 0, rank = None, asize = 0, elemsname = None):
+        
+        arrayType.__init__(self, data, name, attrs, offset, rank, asize,
+            elemsname)
+        self._keyord=['key','value']
+
 class typedArrayType(arrayType):
     def __init__(self, data = None, name = None, typed = None, attrs = None,
         offset = 0, rank = None, asize = 0, elemsname = None, complexType = 0):

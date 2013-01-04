@@ -77,6 +77,7 @@ class SOAPConfig:
             self.strictNamespaces = 0
             self.typed = 1
             self.buildWithNamespacePrefix = 1
+            self.buildWithGlobalNamespacePrefix = False
             self.returnAllAttrs = 0
 
             # Strict checking of range for floats and doubles
