@@ -280,13 +280,17 @@ class HTTPTransport:
         except:
             message_len = -1
             
+        f = r.getfile()
+        if f is None:
+            raise HTTPError(code, "Empty response from server\nCode: %s\nHeaders: %s" % (msg, headers))
+
         if message_len < 0:
             # Content-Length missing or invalid; just read the whole socket
             # This won't work with HTTP/1.1 chunked encoding
-            data = r.getfile().read()
+            data = f.read()
             message_len = len(data)
         else:
-            data = r.getfile().read(message_len)
+            data = f.read(message_len)
 
         if(config.debug):
             print "code=",code
