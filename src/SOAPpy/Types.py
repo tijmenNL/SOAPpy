@@ -1,5 +1,3 @@
-from __future__ import nested_scopes
-
 """
 ################################################################################
 # Copyright (c) 2003, Pfizer
@@ -33,7 +31,9 @@ from __future__ import nested_scopes
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 ################################################################################
+
 """
+from __future__ import nested_scopes
 
 ident = '$Id: Types.py 1496 2010-03-04 23:46:17Z pooryorick $'
 from version import __version__

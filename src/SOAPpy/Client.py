@@ -1,5 +1,3 @@
-from __future__ import nested_scopes
-
 """
 ################################################################################
 #
@@ -40,7 +38,10 @@ from __future__ import nested_scopes
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 ################################################################################
+
 """
+from __future__ import nested_scopes
+
 ident = '$Id: Client.py 1496 2010-03-04 23:46:17Z pooryorick $'
 
 from version import __version__
