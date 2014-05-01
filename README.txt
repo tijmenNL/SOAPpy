@@ -4,6 +4,7 @@ SOAPpy - Simple to use SOAP library for Python
 
 Credits
 ========
+
 Companies
 ---------
 |makinacom|_
