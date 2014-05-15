@@ -5,7 +5,6 @@ from NS        import NS
 from Utilities import *
 
 import string
-import fpconst
 import xml.sax
 from wstools.XMLname import fromXMLname
 
@@ -909,22 +908,22 @@ class SOAPParser(xml.sax.handler.ContentHandler):
 
                 # Explicitly check for NaN and Infinities
                 if s == "nan":
-                    d = fpconst.NaN
+                    d = NaN
                 elif s[0:2]=="inf" or s[0:3]=="+inf":
-                    d = fpconst.PosInf
+                    d = PosInf
                 elif s[0:3] == "-inf":
-                    d = fpconst.NegInf
+                    d = NegInf
                 else :
                     d = float(s)
 
                 if config.strict_range:
-                    if fpconst.isNaN(d):
+                    if NaN == d:
                         if s[0:2] != 'nan':
                             raise ValueError, "invalid %s: %s" % (t[1], s)
-                    elif fpconst.isNegInf(d):
+                    elif NegInf == d:
                         if s[0:3] != '-inf':
                             raise UnderflowError, "%s too small: %s" % (t[1], s)
-                    elif fpconst.isPosInf(d):
+                    elif PosInf == d:
                         if s[0:2] != 'inf' and s[0:3] != '+inf':
                             raise OverflowError, "%s too large: %s" % (t[1], s)
                     elif d < 0 and d < l[1]:

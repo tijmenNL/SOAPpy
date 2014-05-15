@@ -223,7 +223,7 @@ class HTTPTransport:
         # if user is not a user:passwd format
         #    we'll receive a failure from the server. . .I guess (??)
         if addr.user != None:
-            val = base64.encodestring(addr.user) 
+            val = base64.encodestring(urllib.unquote_plus(addr.user))
             r.putheader('Authorization','Basic ' + val.replace('\012',''))
 
         # This fixes sending either "" or "None"
@@ -283,13 +283,17 @@ class HTTPTransport:
         except:
             message_len = -1
             
+        f = r.getfile()
+        if f is None:
+            raise HTTPError(code, "Empty response from server\nCode: %s\nHeaders: %s" % (msg, headers))
+
         if message_len < 0:
             # Content-Length missing or invalid; just read the whole socket
             # This won't work with HTTP/1.1 chunked encoding
-            data = r.getfile().read()
+            data = f.read()
             message_len = len(data)
         else:
-            data = r.getfile().read(message_len)
+            data = f.read(message_len)
 
         if(config.debug):
             print "code=",code

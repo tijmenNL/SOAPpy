@@ -3,7 +3,7 @@ CHANGELOG
 
 0.12.6 (unreleased)
 -----------------------
-- Nothing changed yet
+- Remove dependency on fpconst.
 
 0.12.5 (2011-08-01)
 -------------------

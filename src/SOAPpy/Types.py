@@ -53,6 +53,10 @@ from NS        import NS
 from Utilities import encodeHexString, cleanDate
 from Config    import Config
 
+NaN = float('NaN')
+PosInf = float('Inf')
+NegInf = -PosInf
+
 ###############################################################################
 # Utility functions
 ###############################################################################

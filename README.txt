@@ -123,8 +123,6 @@ USING GITHUB
 REQUIRED PACKAGES
 ------------------
 
-    - fpconst 0.6.0 or later,
-      <http://research.warnes.net/projects/rzope/fpconst/>
     - wstools
 
 
