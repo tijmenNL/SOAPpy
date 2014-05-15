@@ -2,6 +2,11 @@
 SOAPpy - Simple to use SOAP library for Python
 ==============================================
 
+Disclaimer
+==========
+Please use `suds <https://pypi.python.org/pypi/suds>`_ rather than SOAPpy.
+SOAPpy is old and clamsy.
+
 Credits
 ========
 
@@ -46,6 +51,7 @@ INTRODUCTION
 The goal of the SOAPpy team is to provide a full-featured SOAP library
 for Python that is very simple to use and that fully supports dynamic
 interaction between clients and servers.
+
 
 INCLUDED
 --------
