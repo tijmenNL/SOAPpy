@@ -1,9 +1,15 @@
 CHANGELOG
 =====================
 
+2.12.17 (unreleased)
+--------------
+
+- better version handling [kiorky]
+
+
 0.12.6 (2014-05-15)
 -------------------
-- display summary on pypi
+- display summary on pypi [kiorky]
 
 
 0.12.6 (2014-05-15)
