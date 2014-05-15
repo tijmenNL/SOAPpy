@@ -1,6 +1,12 @@
 CHANGELOG
 =====================
 
+0.12.7 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 0.12.6 (2014-05-15)
 -------------------
 - fix cve CVE Request ---- SOAPpy 0.12.5 Multiple Vulnerabilities -- LOL part
