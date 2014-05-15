@@ -118,7 +118,7 @@ USING GITHUB
 
     You can install SOAPpy and its dependencies directly from GitHub using PIP:
 
-        pip install -e "git+http://github.com/pelletier/SOAPpy.git@develop#egg=SOAPpy"
+        pip install -e "git+http://github.com/kiroky/SOAPpy.git@develop#egg=SOAPpy"
 
 REQUIRED PACKAGES
 ------------------
@@ -218,26 +218,8 @@ Note that documentation is one of SOAPpy's current weak points.
 Please help us out!
 
 
-GETTING HELP
+Support
 ============
-
-REPORTING BUGS
---------------
-
-Please submit bug reports, feature requests, patches, etc at the
-Python Web Services web site:  http://pywebsvcs.sourceforge.net.
-
-MAILING LIST
-============
-
-Please address questions and general discussion to the
-pywebsvcs-talk mailing list, pywebsvcs-talk@lists.sourceforge.net.
-
-For subscription information visit
-http://lists.sourceforge.net/lists/listinfo/pywebsvcs-talk.
-List archives are available at
-http://sourceforge.net/mailarchive/forum.php?forum=pywebsvcs-talk
-
-Please remember that the authors do have day jobs, so please try
-the mailing list before contacting them directy.
+Github: https://github.com/kiorky/SOAPpy
+Issues: https://github.com/kiorky/SOAPpy/issues
 
