@@ -1,8 +1,8 @@
 CHANGELOG
 =====================
 
-2.12.17 (unreleased)
---------------
+0.12.18 (2014-05-15)
+--------------------
 
 - better version handling [kiorky]
 
