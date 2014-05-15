@@ -1,21 +1,11 @@
 CHANGELOG
 =====================
 
-0.12.19 (unreleased)
+0.12.20 (unreleased)
 --------------------
-
-- Nothing changed yet.
-
-
-0.12.18 (2014-05-15)
---------------------
-
 - better version handling [kiorky]
-
-
-0.12.6 (2014-05-15)
--------------------
 - display summary on pypi [kiorky]
+- non disclosed intermediate release to polish pypi output [kiorky]
 
 
 0.12.6 (2014-05-15)
