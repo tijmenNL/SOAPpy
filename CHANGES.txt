@@ -4,6 +4,14 @@ CHANGELOG
 0.12.6 (unreleased)
 -----------------------
 - Remove dependency on fpconst.
+- adding maptype  [Sandro Knauß]
+- Support / (and other reserved characters) in the password. [Ionut Turturica]
+- Client.HTTPWithTimeout: fixed constructor's docstring and comments -named the diferences
+  with respect to the overriden method -fixed
+  wrong reference to class in module 'httplib' -added documentation of param 't[German Larrain
+- fixed module docstring location (all imports must be below them)[German Larrain]f
+- [Update SOAPBuilder.py - Clayton Caetano de Sousa]
+
 
 0.12.5 (2011-08-01)
 -------------------
@@ -40,7 +48,7 @@ CHANGELOG
     - zope/
     - bid/
     - .cvsignore files
-    
+
 - Make it proper packaged, specially toward setuptools.
 
 Release 0.12.0 of SOAPpy
@@ -344,7 +352,7 @@ CHANGES SINCE VERSION 0.9.9-pre5
 	Client.py	NS.py		SOAPBuilder.py	Utilities.py
 	Config.py	Parser.py	Server.py
 	Errors.py	SOAP.py		Types.py
-        
+
   This should ease navigation and maintenance.
 
 - A new CVS module 'wstools' was created to hold code which is used by
