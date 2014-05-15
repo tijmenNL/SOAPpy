@@ -3,6 +3,8 @@ CHANGELOG
 
 0.12.6 (unreleased)
 -----------------------
+- fix cve CVE Request ---- SOAPpy 0.12.5 Multiple Vulnerabilities -- XXE part
+  [kiorky]
 - Remove dependency on fpconst.
 - adding maptype  [Sandro Knauß]
 - Support / (and other reserved characters) in the password. [Ionut Turturica]
