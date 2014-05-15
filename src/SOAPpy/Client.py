@@ -1,5 +1,3 @@
-from __future__ import nested_scopes
-
 """
 ################################################################################
 #
@@ -40,7 +38,10 @@ from __future__ import nested_scopes
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 ################################################################################
+
 """
+from __future__ import nested_scopes
+
 ident = '$Id: Client.py 1496 2010-03-04 23:46:17Z pooryorick $'
 
 from version import __version__
@@ -134,17 +135,19 @@ class HTTPWithTimeout(HTTP):
 
     _connection_class = HTTPConnectionWithTimeout
 
-    ## this __init__ copied from httplib.HTML class
     def __init__(self, host='', port=None, strict=None, timeout=None):
-        "Provide a default host, since the superclass requires one."
+        """Slight modification of superclass (httplib.HTTP) constructor.
 
-        # some joker passed 0 explicitly, meaning default port
+        The only change is that arg ``timeout`` is also passed in the
+        initialization of :attr:`_connection_class`.
+
+        :param timeout: for the socket connection (seconds); None to disable
+        :type timeout: float or None
+
+        """
         if port == 0:
             port = None
 
-        # Note that we may pass an empty string as the host; this will throw
-        # an error when we attempt to connect. Presumably, the client code
-        # will call connect before then, with a proper host.
         self._setup(self._connection_class(host, port, strict, timeout))
 
 class HTTPTransport:
