@@ -1,6 +1,12 @@
 CHANGELOG
 =====================
 
+0.12.21 (unreleased)
+--------------------
+
+- Nothing changed yet.
+
+
 0.12.20 (2014-05-15)
 --------------------
 - better version handling [kiorky]
