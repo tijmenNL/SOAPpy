@@ -1,8 +1,27 @@
 CHANGELOG
 =====================
 
-0.12.6 (unreleased)
------------------------
+0.12.19 (unreleased)
+--------------------
+
+- Nothing changed yet.
+
+
+0.12.18 (2014-05-15)
+--------------------
+
+- better version handling [kiorky]
+
+
+0.12.6 (2014-05-15)
+-------------------
+- display summary on pypi [kiorky]
+
+
+0.12.6 (2014-05-15)
+-------------------
+- fix cve CVE Request ---- SOAPpy 0.12.5 Multiple Vulnerabilities -- LOL part
+  [kiorky]
 - fix cve CVE Request ---- SOAPpy 0.12.5 Multiple Vulnerabilities -- XXE part
   [kiorky]
 - Remove dependency on fpconst.
