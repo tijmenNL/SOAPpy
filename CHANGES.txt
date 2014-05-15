@@ -3,8 +3,7 @@ CHANGELOG
 
 0.12.7 (unreleased)
 -------------------
-
-- Nothing changed yet.
+- display summary on pypi
 
 
 0.12.6 (2014-05-15)

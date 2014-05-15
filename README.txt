@@ -2,6 +2,8 @@
 SOAPpy - Simple to use SOAP library for Python
 ==============================================
 
+.. contents::
+
 Disclaimer
 ==========
 Please use `suds <https://pypi.python.org/pypi/suds>`_ rather than SOAPpy.
