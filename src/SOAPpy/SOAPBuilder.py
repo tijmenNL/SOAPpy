@@ -345,7 +345,14 @@ class SOAPBuilder:
 
     def dump_int(self, obj, tag, typed = 1, ns_map = {}):
         if Config.debug: print "In dump_int."
-        self.out.append(self.dumper(None, 'integer', obj, tag, typed,
+        
+        # fix error "Bad types (class java.math.BigInteger -> class java.lang.Integer)"
+        if isinstance(obj, LongType):
+            obj_type = "integer"
+        else:
+            obj_type = "int"
+
+        self.out.append(self.dumper(None, obj_type, obj, tag, typed,
                                      ns_map, self.genroot(ns_map)))
 
     def dump_bool(self, obj, tag, typed = 1, ns_map = {}):
