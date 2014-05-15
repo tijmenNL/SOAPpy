@@ -16,6 +16,10 @@ except ImportError:
 try: from M2Crypto import SSL
 except: pass
 
+from defusedxml import expatreader
+from defusedxml.common import DefusedXmlException
+
+
 ident = '$Id: Parser.py 1497 2010-03-08 06:06:52Z pooryorick $'
 from version import __version__
 
@@ -23,6 +27,11 @@ from version import __version__
 ################################################################################
 # SOAP Parser
 ################################################################################
+
+def make_parser(parser_list=[]):
+        return expatreader.create_parser()
+
+
 class RefHolder:
     def __init__(self, name, frame):
         self.name = name
@@ -1041,27 +1050,38 @@ class EmptyEntityResolver(xml.sax.handler.EntityResolver):
         return StringIO("<?xml version='1.0' encoding='UTF-8'?>")
 
 
-def _parseSOAP(xml_str, rules = None, ignore_ext=None):
+def _parseSOAP(xml_str, rules = None, ignore_ext=None,
+               forbid_entities=False, forbid_external=True, forbid_dtd=False):
+    inpsrc = xml.sax.xmlreader.InputSource()
+    inpsrc.setByteStream(StringIO(xml_str))
     if ignore_ext is None:
         ignore_ext = False
 
-    parser = xml.sax.make_parser()
+    parser = make_parser()
     t = SOAPParser(rules=rules)
     parser.setContentHandler(t)
-    e = xml.sax.handler.ErrorHandler()
-    parser.setErrorHandler(e)
+    errorHandler = xml.sax.handler.ErrorHandler()
+    parser.setErrorHandler(errorHandler)
 
-    inpsrc = xml.sax.xmlreader.InputSource()
-    inpsrc.setByteStream(StringIO(xml_str))
-
-    # disable by default  entity loading on posted content
     if ignore_ext:
-        parser.setEntityResolver(EmptyEntityResolver())
+        # disable by default  entity loading on posted content
+        forbid_dtd = True
+        forbid_entities = True
+        forbid_external = True
+    parser.forbid_dtd = forbid_dtd
+    parser.forbid_entities = forbid_entities
+    parser.forbid_external = forbid_external
+    parser.setEntityResolver(EmptyEntityResolver())
+
     # turn on namespace mangeling
     parser.setFeature(xml.sax.handler.feature_namespaces, 1)
 
     try:
         parser.parse(inpsrc)
+    except DefusedXmlException, e:
+        parser._parser = None
+        print traceback.format_exc()
+        raise e
     except xml.sax.SAXParseException, e:
         parser._parser = None
         print traceback.format_exc()
