@@ -10,7 +10,8 @@ CHANGELOG
   with respect to the overriden method -fixed
   wrong reference to class in module 'httplib' -added documentation of param 't[German Larrain
 - fixed module docstring location (all imports must be below them)[German Larrain]f
-- [Update SOAPBuilder.py - Clayton Caetano de Sousa]
+- fix error "Bad types (class java.math.BigInteger -> class java.lang.Integer)" - Clayton Caetano de Sousa]
+
 
 
 0.12.5 (2011-08-01)
