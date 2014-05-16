@@ -679,7 +679,7 @@ class SOAPBuilder:
             self.out.append('<%s%s%s>\n' % (tag, id, r))
 
             d1 = getattr(obj, '__dict__', None)
-            if d1 is None and hasattr(obj, "__slots__")
+            if d1 is None and hasattr(obj, "__slots__"):
                 d1 = dict(((k, getattr(obj, k)) for k in obj.__slots__))
             if d1 is not None:
                 for (k, v) in d1.items():
