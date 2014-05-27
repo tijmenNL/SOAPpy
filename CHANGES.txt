@@ -4,7 +4,8 @@ CHANGELOG
 0.12.21 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- Dispatching custom objects, slots supported.
+  [Davorin Kunstelj]
 
 
 0.12.20 (2014-05-15)
