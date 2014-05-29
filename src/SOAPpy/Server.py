@@ -233,7 +233,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             args   = r._aslist()
             kw     = r._asdict()
 
-            if Config.simplify_objects:
+            if self.server.config.simplify_objects:
                 args = simplify(args)
                 kw = simplify(kw)
 
@@ -253,7 +253,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
             ordered_args = {}
             named_args   = {}
 
-            if Config.specialArgs:
+            if self.server.config.specialArgs:
 
                 for (k,v) in  kw.items():
 
@@ -383,7 +383,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                         if f.context:  # retrieve context object
                             c = _contexts[thread_id]
 
-                        if Config.specialArgs:
+                        if self.server.config.specialArgs:
                             if c:
                                 named_args["_SOAPContext"] = c
                             fr = apply(f, ordered_args, named_args)
@@ -404,7 +404,7 @@ class SOAPRequestHandler(BaseHTTPServer.BaseHTTPRequestHandler):
                             fr = apply(f, args, {})
 
                     else:
-                        if Config.specialArgs:
+                        if self.server.config.specialArgs:
                             fr = apply(f, ordered_args, named_args)
                         else:
                             fr = apply(f, args, {})

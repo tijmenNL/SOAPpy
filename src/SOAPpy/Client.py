@@ -477,7 +477,7 @@ class SOAPProxy:
             throw_struct = 0
 
         if throw_struct:
-            if Config.debug:
+            if self.config.debug:
                 print p
             raise p
 
