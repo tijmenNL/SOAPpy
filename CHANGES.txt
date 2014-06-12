@@ -1,10 +1,17 @@
 CHANGELOG
 =====================
 
-0.12.21 (unreleased)
+0.12.22 (unreleased)
 --------------------
 
 - Nothing changed yet.
+
+
+0.12.21 (2014-05-27)
+--------------------
+
+- Dispatching custom objects, slots supported.
+  [Davorin Kunstelj]
 
 
 0.12.20 (2014-05-15)
