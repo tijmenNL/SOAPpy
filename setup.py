@@ -17,7 +17,7 @@ long_description="SOAPpy provides tools for building SOAP clients and servers.  
     +'\n'+read('CHANGES.txt')
 setup(
     name="SOAPpy",
-    version='0.12.22.dev0',
+    version='0.12.22',
     description="SOAP Services for Python",
     maintainer="Gregory Warnes, kiorky",
     maintainer_email="Gregory.R.Warnes@Pfizer.com, kiorky@cryptelium.net",

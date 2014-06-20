@@ -1,7 +1,7 @@
 CHANGELOG
 =====================
 
-0.12.22 (unreleased)
+0.12.22 (2014-06-20)
 --------------------
 
 - proper usage of config property inside objects. [Davorin Kunstelj]
