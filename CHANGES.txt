@@ -4,7 +4,9 @@ CHANGELOG
 0.12.22 (unreleased)
 --------------------
 
-- Nothing changed yet.
+- proper usage of config property inside objects. [Davorin Kunstelj]
+- dump user defined types with handler functions (can be used to override dump
+  of built-in types). [Davorin Kunstelj]
 
 
 0.12.21 (2014-05-27)
