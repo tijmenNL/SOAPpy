@@ -596,6 +596,12 @@ class SOAPBuilder:
             else:
                 tag = self.gentag()
 
+        # Apply additional types, override built-in types
+        for dtype, func in self.config.dumpmap:
+            if isinstance(obj, dtype):
+                func(self, obj, tag, typed, ns_map)
+                return
+
         # watch out for order!
         dumpmap = (
             (Exception, self.dump_exception),
