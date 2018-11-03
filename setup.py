@@ -13,7 +13,7 @@ def read(*rnames):
     ).read()
 url="https://github.com/kiorky/SOAPpy.git"
 long_description="SOAPpy provides tools for building SOAP clients and servers.  For more information see " + url\
-    +'\n'+read('README.txt')\
+    +'\n'+read('README.rst')\
     +'\n'+read('CHANGES.txt')
 setup(
     name="SOAPpy",
