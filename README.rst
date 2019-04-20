@@ -12,10 +12,6 @@ SOAPpy is old and clamsy.
 Credits
 ========
 
-    
-Support development
----------------------
-- `paypal <https://paypal.me/kiorky>`_
 
 
 Companies
