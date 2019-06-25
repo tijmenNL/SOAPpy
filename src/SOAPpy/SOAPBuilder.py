@@ -629,6 +629,7 @@ class SOAPBuilder:
 
         if isinstance(obj, voidType):     # void
             self.out.append("<%s%s%s></%s>\n" % (tag, a, r, tag))
+            return
         else:
             id = self.checkref(obj, tag, ns_map)
             if id == None:
